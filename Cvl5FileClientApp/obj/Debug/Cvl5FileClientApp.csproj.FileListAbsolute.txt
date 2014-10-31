@@ -1,1 +1,9 @@
 c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5FileClientApp\bin\Debug\Cvl5FileClientApp.exe.config
+c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5FileClientApp\bin\Debug\Cvl5FileClientApp.exe
+c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5FileClientApp\bin\Debug\Cvl5FileClientApp.pdb
+c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.csprojResolveAssemblyReference.cache
+c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.Form1.resources
+c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.Properties.Resources.resources
+c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.csproj.GenerateResource.Cache
+c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.exe
+c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.pdb

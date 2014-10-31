@@ -29,22 +29,24 @@ namespace Cvl5FileClientApp
 
         private void AddBtn_CheckedChanged(object sender, EventArgs e)
         {
-
+            ValueTextBox.Enabled = true;
         }
 
         private void DeleteBtn_CheckedChanged(object sender, EventArgs e)
         {
-
+            ValueTextBox.Enabled = false;
+            ValueTextBox.Text = "";
         }
 
         private void EditBtn_CheckedChanged(object sender, EventArgs e)
         {
-
+            ValueTextBox.Enabled = true;
         }
 
         private void GetBtn_CheckedChanged(object sender, EventArgs e)
         {
-
+            ValueTextBox.Enabled = false;
+            ValueTextBox.Text = "";
         }
     }
 }
