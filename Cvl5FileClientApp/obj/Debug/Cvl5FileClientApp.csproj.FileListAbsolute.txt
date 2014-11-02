@@ -7,3 +7,12 @@ c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5F
 c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.csproj.GenerateResource.Cache
 c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.exe
 c:\users\clombardi\documents\visual studio 2012\Projects\Cvl5FileClientApp\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.pdb
+C:\Users\c_lom_000\Documents\FileClientGUI\Cvl5FileClientApp\bin\Debug\Cvl5FileClientApp.exe.config
+C:\Users\c_lom_000\Documents\FileClientGUI\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.exe
+C:\Users\c_lom_000\Documents\FileClientGUI\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.pdb
+C:\Users\c_lom_000\Documents\FileClientGUI\Cvl5FileClientApp\bin\Debug\Cvl5FileClientApp.exe
+C:\Users\c_lom_000\Documents\FileClientGUI\Cvl5FileClientApp\bin\Debug\Cvl5FileClientApp.pdb
+C:\Users\c_lom_000\Documents\FileClientGUI\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.csprojResolveAssemblyReference.cache
+C:\Users\c_lom_000\Documents\FileClientGUI\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.Form1.resources
+C:\Users\c_lom_000\Documents\FileClientGUI\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.Properties.Resources.resources
+C:\Users\c_lom_000\Documents\FileClientGUI\Cvl5FileClientApp\obj\Debug\Cvl5FileClientApp.csproj.GenerateResource.Cache

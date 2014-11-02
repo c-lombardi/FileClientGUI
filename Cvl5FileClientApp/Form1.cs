@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace Cvl5FileClientApp
 {
     public partial class Form1 : Form
     {
+        string ipAddress;
+        short PortNumber;
         public Form1()
         {
             InitializeComponent();
@@ -25,40 +28,97 @@ namespace Cvl5FileClientApp
 
         private void button1_Click(object sender, EventArgs e) //Send
         {
-            var sendBuf = new char[100];
+            button1.Enabled = false;
+            IPAddressTextBox.Enabled = false;
+            PortNumberTextBox.Enabled = false;
+            var length = 3;
+            var recvData = new byte[100];
+            byte[] sendBuf;
             if (AddBtn.Checked)
             {
-                sendBuf[0] = '1';
+                length = length + KeyTextBox.Text.Length + ValueTextBox.Text.Length;
+                sendBuf = new byte[length];
+                sendBuf[0] = (byte)1;
             }
             else if (DeleteBtn.Checked)
             {
-                sendBuf[0] = '2';
+                length = length + KeyTextBox.Text.Length;
+                sendBuf = new byte[length];
+                sendBuf[0] = (byte)2;
             }
             else if (EditBtn.Checked)
             {
-                sendBuf[0] = '3';
+                length = length + KeyTextBox.Text.Length + ValueTextBox.Text.Length;
+                sendBuf = new byte[length];
+                sendBuf[0] = (byte)3;
             }
-            else if (GetBtn.Checked)
+            else
             {
-                sendBuf[0] = '4';
+                length = length + KeyTextBox.Text.Length;
+                sendBuf = new byte[length];
+                sendBuf[0] = (byte)4;
             }
             var position = 0;
             foreach (var c in KeyTextBox.Text.ToCharArray())
             {
                 position++;
-                sendBuf[position] = c;
+                sendBuf[position] = (byte)c;
             }
             position ++;
-            sendBuf[position] = (char)0;
+            sendBuf[position] = (byte)0;
             foreach (var c in ValueTextBox.Text.ToCharArray())
             {
                 position++;
-                sendBuf[position] += c;
+                sendBuf[position] += (byte)c;
             }
             position ++;
-            sendBuf[position] = (char)0;
-            Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Udp);
+            sendBuf[position] = (byte)0;
+
+            int val = 29999 ;
+            val = IPAddress.HostToNetworkOrder( val );
+    
+            byte[] bytes = BitConverter.GetBytes( val );
+
+            var ep = new IPEndPoint(IPAddress.Parse(ipAddress), PortNumber);
             
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 2000);
+
+            try
+            {
+                socket.SendTo(sendBuf, sendBuf.Length, SocketFlags.None, ep);
+                EndPoint tmpRemote = new IPEndPoint(IPAddress.Parse(ipAddress), PortNumber);
+                socket.ReceiveFrom(recvData, SocketFlags.None, ref tmpRemote);
+            }
+            catch (SocketException ex)
+            {
+
+                ResponseTextBox.Text = "No data received, trying again, again...";
+                try
+                {
+                    socket.SendTo(sendBuf, sendBuf.Length, SocketFlags.None, ep);
+                    EndPoint tmpRemote = new IPEndPoint(IPAddress.Parse(ipAddress), PortNumber);
+                    socket.ReceiveFrom(recvData, SocketFlags.None, ref tmpRemote);
+                }
+                catch (SocketException ex1)
+                {
+                    ResponseTextBox.Text = "No data received, trying again...";
+                    try
+                    {
+                        socket.SendTo(sendBuf, sendBuf.Length, SocketFlags.None, ep);
+                        EndPoint tmpRemote = new IPEndPoint(IPAddress.Parse(ipAddress), PortNumber);
+                        socket.ReceiveFrom(recvData, SocketFlags.None, ref tmpRemote);
+                    }
+                    catch (SocketException ex2)
+                    {
+                        ResponseTextBox.Text = "No data received, I give up.";
+                    }
+                }
+            }
+            ResponseTextBox.Text = System.Text.Encoding.Default.GetString(recvData);
+            button1.Enabled = true;
+            IPAddressTextBox.Enabled = true;
+            PortNumberTextBox.Enabled = true;
         }
 
         private void AddBtn_CheckedChanged(object sender, EventArgs e)
@@ -81,6 +141,24 @@ namespace Cvl5FileClientApp
         {
             ValueTextBox.Enabled = false;
             ValueTextBox.Text = "";
+        }
+
+        private void IPAddressTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ipAddress = IPAddressTextBox.Text;
+        }
+
+        private void PortNumberTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                PortNumber = (short)Int16.Parse(PortNumberTextBox.Text);
+                ResponseTextBox.Text = "";
+            }
+            catch(Exception ex)
+            {
+                ResponseTextBox.Text = "Error: Please enter a valid port number";
+            }
         }
     }
 }
